@@ -6,7 +6,7 @@ function App() {
     <div>
       <h2>Let's get started!</h2>
       {expenses.map((expense) => {
-        return <ExpenseItem expense={expense}></ExpenseItem>;
+        return <ExpenseItem expense={expense} />;
       })}
     </div>
   );
