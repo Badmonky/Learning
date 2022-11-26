@@ -1,13 +1,10 @@
-import ExpenseItem from "./components/ExpenseItem";
-import expenses from "./components/expenses.js";
+import Expenses from "./components/Expenses.js";
 
 function App() {
   return (
     <div>
       <h2>Let's get started!</h2>
-      {expenses.map((expense) => {
-        return <ExpenseItem expense={expense} />;
-      })}
+      <Expenses />
     </div>
   );
 }
