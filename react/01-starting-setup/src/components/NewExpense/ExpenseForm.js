@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   // const [newExpenseTitle, setnewExpenseTitle] = useState('');
   // const [newExpenseAmount, setnewExpenseAmount] = useState('');
   // const [newExpenseDate, setnewExpenseDate] = useState('');
@@ -24,6 +24,8 @@ const ExpenseForm = () => {
       case "dateField":
         tempInputs.newExpenseDate = event.target.value;
         break;
+      default:
+        break;
     }
     setUserInput(tempInputs);
   }
@@ -43,8 +45,7 @@ const ExpenseForm = () => {
       amount: userInput.newExpenseAmount,
       date: new Date(userInput.newExpenseDate),
     };
-    console.log(expenseData);
-
+    props.onSaveExpenseData(expenseData);
     resetUserInput();
   }
 
