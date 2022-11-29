@@ -1,11 +1,19 @@
+import React, { useState } from "react";
+
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
+import data from "./Data/ExpenseData";
 
 function App() {
 
-  function addExpenseHandler(expense){
-    console.log(expense);
-    
+  const [expenseData, setExpenseData] = useState(data);
+
+  function addExpenseHandler(newExpense){
+    setExpenseData((prev) =>{
+       prev.push(newExpense);
+    })
+    console.log(expenseData);
+
   }
 
   return (
@@ -13,8 +21,7 @@ function App() {
       <h2>Let's get started!</h2>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <NewExpense onAddExpense={addExpenseHandler}/>
-      <Expenses />
-      
+      <Expenses expenses={expenseData}/>
     </div>
   );
 }
