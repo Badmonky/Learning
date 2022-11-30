@@ -19,8 +19,8 @@ function Expenses(props) {
     <div className="expenses">
       <ExpensesFilter filter={filter} onFilterSelected={filterSelectedHandler}/>
       <Card>
-        {expenses.map((expense) => {
-          return <ExpenseItem expense={expense} />;
+        {expenses.map((expense, index) => {
+          return <ExpenseItem expense={expense} key={expense}/>;
         })}
       </Card>
     </div>
