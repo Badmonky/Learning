@@ -11,11 +11,9 @@ function Expenses(props) {
   function filterSelectedHandler(year) {
     setFilter(year);
   }
-
-  let filteredExpenses = props.expenses.filter((expense) => {
+  let filteredExpenses = props.expenses?.filter((expense) => {
     return expense.date.getFullYear().toString() === filter;
   });
-
   return (
     <div>
       <Card className="expenses">

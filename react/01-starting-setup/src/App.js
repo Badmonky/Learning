@@ -10,10 +10,10 @@ function App() {
 
   function addExpenseHandler(newExpense){
     setExpenseData((prev) =>{
-       prev.push(newExpense);
+       //prev.push(newExpense); //this makes it break
+       return [newExpense, ...prev];
     })
     console.log(expenseData);
-
   }
 
   return (
