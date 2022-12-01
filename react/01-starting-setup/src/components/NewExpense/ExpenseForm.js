@@ -55,6 +55,7 @@ const ExpenseForm = (props) => {
         <div className="new-expense__controls">
           <label>Title</label>
           <input
+            required='true'
             id="titleField"
             type="text"
             value={userInput.newExpenseTitle}
@@ -64,6 +65,7 @@ const ExpenseForm = (props) => {
         <div className="new-expense__controls">
           <label>Amount</label>
           <input
+            required='true'
             type="number"
             id="amountField"
             value={userInput.newExpenseAmount}
@@ -75,6 +77,7 @@ const ExpenseForm = (props) => {
         <div className="new-expense__controls">
           <label>Date</label>
           <input
+            required='true'
             type="date"
             id="dateField"
             value={userInput.newExpenseDate}
