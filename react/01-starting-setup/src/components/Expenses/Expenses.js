@@ -7,22 +7,31 @@ import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 
 function Expenses(props) {
-  const [expenses, setExpenses] = useState(props.expenses);
-  const [filter, setFilter] = useState('2019');
+  // const [expenses, setExpenses] = useState(props.expenses); // no need for this since expenses will be re-rendered when filter state changes
+  const [filter, setFilter] = useState("2020");
 
   function filterSelectedHandler(year) {
     setFilter(year);
-    console.log(year);
+  }
+
+  let filteredExpenses = props.expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === filter;
+  });
+
+  let expensesToRender = <p>No expenses for this year.</p>;
+  if (filteredExpenses.length > 0) {
+    expensesToRender = filteredExpenses.map((expense) => {
+      return <ExpenseItem expense={expense} key={expense.id} />;
+    });
   }
 
   return (
     <div className="expenses">
-      <ExpensesFilter filter={filter} onFilterSelected={filterSelectedHandler}/>
-      <Card>
-        {expenses.map((expense, index) => {
-          return <ExpenseItem expense={expense} key={expense}/>;
-        })}
-      </Card>
+      <ExpensesFilter
+        filter={filter}
+        onFilterSelected={filterSelectedHandler}
+      />
+      <Card>{expensesToRender}</Card>
     </div>
   );
 }
