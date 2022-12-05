@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [ 
+      {
+          "name": "01-starting-debug",
+          "type": "chrome",
+          "request": "launch",
+          "url": "http://localhost:3000",      // create-react-app's default port 3000
+          "webRoot": "${workspaceRoot}",
+          "sourceMapPathOverrides": {
+            "webpack:///src/*": "${webRoot}/*"
+          },
+          "preLaunchTask": "npm: start"        // Add prelaunch Task npm: start (defined in tasks.json)
+      },
+      {
+          "type": "chrome",
+          "request": "launch",
+          "name": "Launch Chrome against localhost",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceRoot}",
+      },
+  ]
+}
