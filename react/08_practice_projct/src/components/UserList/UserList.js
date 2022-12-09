@@ -1,15 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './UserList.module.css';
+
+import Card from '../UI/Card/Card'
 
 const UserList = () => (
   <div className={styles.UserList}>
-    UserList Component
+    <Card>Card UserList</Card>
   </div>
 );
 
-UserList.propTypes = {};
-
-UserList.defaultProps = {};
 
 export default UserList;

@@ -1,15 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Card.module.css';
 
-const Card = () => (
+const Card = (props) => (
   <div className={styles.Card}>
-    Card Component
+    {props.children}
   </div>
 );
 
-Card.propTypes = {};
-
-Card.defaultProps = {};
-
 export default Card;
+
