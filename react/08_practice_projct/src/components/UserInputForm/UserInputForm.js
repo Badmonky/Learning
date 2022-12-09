@@ -10,21 +10,35 @@ const UserInputForm = (props) => {
     age: "",
   });
 
+  function inputChangeHandler(event) {
+    let tempInputs = { ...userInput };
+    switch (event.target.id) {
+      case "nameField":
+        tempInputs.name = event.target.value;
+        break;
+      case "ageField":
+        tempInputs.age = event.target.value;
+        break;
+      default:
+        break;
+    }
+    setUserInput(tempInputs);
+  }
+
   function resetUserInput() {
     setUserInput({
       name: "",
-    age: "",
+      age: "",
     });
   }
 
   function submitHandler(event) {
     event.preventDefault();
-    // const formData = {
-    //   title: userInput.newExpenseTitle,
-    //   amount: +userInput.newExpenseAmount,
-    //   date: new Date(userInput.newExpenseDate),
-    // };
-    // props.onSaveExpenseData(expenseData);
+    const formData = {
+      name: userInput.name,
+      age: +userInput.age,
+    };
+    props.onAddUser(formData);
     resetUserInput();
   }
 
@@ -37,8 +51,8 @@ const UserInputForm = (props) => {
             id="nameField"
             type="text"
             placeholder="Username"
-            // value={userInput.newExpenseTitle}
-            // onChange={inputChangeHandler}
+            value={userInput.name}
+            onChange={inputChangeHandler}
           />
         </div>
         <div className={styles.UserInputForm}>
@@ -47,10 +61,10 @@ const UserInputForm = (props) => {
             type="number"
             id="ageField"
             placeholder="Age"
-            // value={userInput.newExpenseAmount}
+            value={userInput.age}
             // min="0.01"
             // step="0.01"
-            // onChange={inputChangeHandler}
+            onChange={inputChangeHandler}
           />
         </div>
         <div className={styles.UserInputFormActions}>
