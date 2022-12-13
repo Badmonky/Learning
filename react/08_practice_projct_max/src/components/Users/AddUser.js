@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
+import Modal from "../UI/Modal";
 
 import styles from "./AddUsers.module.css";
 
@@ -11,13 +12,20 @@ const AddUser = (props) => {
     name: "",
     age: "",
   });
+  const [error, setError] = useState();
 
   const addUserHandler = (event) => {
     event.preventDefault();
     console.log({ userInput });
     if (userInput.age.toString() <= 0) {
-      alert("Poop!");
+      // alert("Poop!");
+      setError({
+        title: 'Invalid Input',
+        message: 'Please enter age > 0.'
+      });
+      return;
     }
+    props.onAddUser(userInput.name, userInput.age);
     resetUserInput();
     //add to list
   };
@@ -27,6 +35,10 @@ const AddUser = (props) => {
       name: "",
       age: "",
     });
+  }
+
+  function errorHandler(){
+    setError(null);
   }
 
   const inputHandler = (event) => {
@@ -45,29 +57,32 @@ const AddUser = (props) => {
   };
 
   return (
-    <Card className={styles.input}>
-      <form onSubmit={addUserHandler}>
-        <label required={true} htmlFor="username">
-          Username
-        </label>
-        <input
-          value={userInput.name}
-          required={true}
-          onChange={inputHandler}
-          id="username"
-          type="text"
-        ></input>
-        <label htmlFor="age">Age</label>
-        <input
-          value={userInput.age}
-          required={true}
-          onChange={inputHandler}
-          id="age"
-          type="number"
-        ></input>
-        <Button type="submit">Add User</Button>
-      </form>
-    </Card>
+    <div>
+      {error && <Modal onDismiss={errorHandler} title={error.title} message={error.message}></Modal>}
+      <Card className={styles.input}>
+        <form onSubmit={addUserHandler}>
+          <label required={true} htmlFor="username">
+            Username
+          </label>
+          <input
+            value={userInput.name}
+            required={true}
+            onChange={inputHandler}
+            id="username"
+            type="text"
+          ></input>
+          <label htmlFor="age">Age</label>
+          <input
+            value={userInput.age}
+            required={true}
+            onChange={inputHandler}
+            id="age"
+            type="number"
+          ></input>
+          <Button type="submit">Add User</Button>
+        </form>
+      </Card>
+    </div>
   );
 };
 
