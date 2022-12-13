@@ -20,8 +20,8 @@ const AddUser = (props) => {
     if (userInput.age.toString() <= 0) {
       // alert("Poop!");
       setError({
-        title: 'Invalid Input',
-        message: 'Please enter age > 0.'
+        title: "Invalid Input",
+        message: "Please enter age > 0.",
       });
       return;
     }
@@ -37,7 +37,7 @@ const AddUser = (props) => {
     });
   }
 
-  function errorHandler(){
+  function errorHandler() {
     setError(null);
   }
 
@@ -58,7 +58,13 @@ const AddUser = (props) => {
 
   return (
     <div>
-      {error && <Modal onDismiss={errorHandler} title={error.title} message={error.message}></Modal>}
+      {error && (
+        <Modal
+          onDismiss={errorHandler}
+          title={error.title}
+          message={error.message}
+        ></Modal>
+      )}
       <Card className={styles.input}>
         <form onSubmit={addUserHandler}>
           <label required={true} htmlFor="username">
