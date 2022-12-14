@@ -6,7 +6,7 @@ import Card from "./Card";
 import styles from "./ErrorModal.module.css";
 
 const Backdrop = (props) => {
-  return <div onClick={props.onDismiss} className={styles.backdrop}></div>;
+  return <div onClick={props.onConfirm} className={styles.backdrop}></div>;
 };
 
 const ModalOverlay = (props) => {
@@ -19,7 +19,7 @@ const ModalOverlay = (props) => {
         <p>{props.message}</p>
       </div>
       <footer className={styles.actions}>
-        <Button onClick={props.onDismiss}>OK</Button>
+        <Button onClick={props.onConfirm}>OK</Button>
       </footer>
     </Card>
   );
@@ -29,11 +29,15 @@ const Modal = (props) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <Backdrop onDismiss={props.onDismiss} />,
+        <Backdrop onConfirm={props.onConfirm} />,
         document.getElementById("backdrop-root")
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay onDismiss={props.onDismiss} />,
+        <ModalOverlay
+        onConfirm={props.onConfirm}
+          message={props.message}
+          title={props.title}
+        />,
         document.getElementById("overlay-root")
       )}
     </Fragment>
